@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	  <meta content="yes" name="apple-mobile-web-app-capable">
+	  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	  <meta content="telephone=no" name="format-detection">
+	  <meta content="email=no" name="format-detection">
+	  <link rel="stylesheet" href="css/public.css" />
+	  <link rel="stylesheet" href="css/delToast.css" />
+	  <script src='js/public.js'></script>
+		<title>删除</title>
+</head>
+<body>
+	<div class="container">
+		<div class="showDelToast">显示删除弹窗</div>
+		<!-- 删除弹窗 -->
+		<div class="is-del">
+			<div class="mask"></div>
+			<div class="content">
+				<div class="top">确定删除此地址吗？</div>
+				<div class="clearfix">
+					<div class="lf item cancle">取消</div>
+					<div class="lf item confirm">确定</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			// 显示删除弹框
+			$('.showDelToast').on('click', function() {
+				$('.is-del').show();
+			})
+
+			// 取消
+			$('.cancle').on('click', function() {
+				$(this).parent().parent().parent().hide();
+			})
+
+			// 确定删除
+			$('.confirm').on('click',function(){
+				$.ajax({
+					url: '',
+					type: 'POST',
+					data: {
+						id: 0
+					},
+					success: function(res) {
+						// 如果提交成功
+						
+					},
+					error: function(a) {
+						console.log('提交失败', JSON.stringify(a));
+					} 
+				})
+			})
+
+		})
+	</script>
+</body>
+</html>

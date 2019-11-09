@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	  <meta content="yes" name="apple-mobile-web-app-capable">
+	  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+	  <meta content="telephone=no" name="format-detection">
+	  <meta content="email=no" name="format-detection">
+	  <link rel="stylesheet" href="css/public.css" />
+	  <link rel="stylesheet" href="css/groupsend.css" />
+	  <script src='js/public.js'></script>
+	  
+		<title>群发</title>
+</head>
+<body>
+	<div class="container">
+		<div class="sel-all clearfix">
+			<div class="lf text">所有联系人</div>
+			<div class="right rf">
+				<input type="checkbox" class="selall" name="selall" id="selall"><label for="selall" class="selall-label">全选</label>
+			</div>
+		</div>
+		<div class="person-list">
+
+			<div class="item clearfix">
+				<div class="avatar lf"><img src="img/avatar.png" alt=""></div>
+				<div class="right">
+					<div class="clamp1">
+						<span class="name">张强张强</span>
+						<span class="bumen">测试部测试部测试部测试部测试部测试部</span>
+					</div>
+					<div class="mobile">158 5858 5858</div>
+				</div>
+				<div class="checkbox">
+					<!-- label的for要和input的相同 -->
+					<input type="checkbox" id="selcheck1" name="selcheck" class="selcheck" value="1">
+					<label for="selcheck1" class="selcheck-label"></label>
+				</div>
+			</div>
+			<div class="item clearfix">
+				<div class="avatar lf"><img src="img/avatar.png" alt=""></div>
+				<div class="right">
+					<div class="clamp1">
+						<span class="name">张强</span>
+						<span class="bumen">测试部</span>
+					</div>
+					<div class="mobile">158 5858 5858</div>
+				</div>
+				<div class="checkbox">
+					<!-- label的for要和input的相同 -->
+					<input type="checkbox" id="selcheck2" name="selcheck" class="selcheck" value="2">
+					<label for="selcheck2" class="selcheck-label"></label>
+				</div>
+			</div>
+			<div class="item clearfix">
+				<div class="avatar lf"><img src="img/avatar.png" alt=""></div>
+				<div class="right">
+					<div class="clamp1">
+						<span class="name">张强啊</span>
+						<span class="bumen">web前端开发</span>
+					</div>
+					<div class="mobile">158 5858 5858</div>
+				</div>
+				<div class="checkbox">
+					<!-- label的for要和input的相同 -->
+					<input type="checkbox" id="selcheck3" name="selcheck" class="selcheck" value="3">
+					<label for="selcheck3" class="selcheck-label"></label>
+				</div>
+			</div>
+		</div>
+
+		<!-- 底部确认取消按钮 -->
+		<div class="clearfix btm-btn">
+			<div class="lf btn cancle">取消</div>
+			<div class="lf btn confirm">确定</div>
+		</div>
+
+
+		
+
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var personNum = $('input[name="selcheck"]').length; //人数（判断是否全选）
+
+			// 监听是否全选
+			$('input[name="selall"]').click(function(){
+				var flag = $(this).prop('checked'); //false是全选， true是取消全选
+				$("input[name='selcheck']").each(function () {
+			    $(this).prop("checked", flag);
+			  });
+			})
+
+			// 监听每个人是否选中
+			$('input[name="selcheck"]').click(function(){
+				var flag = $(this).prop('checked');
+				isSelAll();
+			})
+
+			// 判断是否是全选
+			function isSelAll() {
+				var num = $('input[name="selcheck"]:checked').length;
+				if(num >= personNum) {
+					// 全选
+					$('input[name="selall"]').prop('checked', true);
+				}else{
+					// 未全选
+					$('input[name="selall"]').prop('checked', false);
+				}
+			}
+
+			// 确定
+			$('.confirm').on('click',function(){
+				if($("input[name='selcheck']:checked").length == 0){
+					alert('请选择联系人！');
+				}else{
+					var data = [];
+					$("input[name='selcheck']:checked").each(function () {
+				    data.push($(this).val());
+				  });
+				  console.log(data);
+				  $.ajax({
+				  	url: '',
+				  	type: 'POST',
+				  	data: {
+				  		sel: data.toString()
+				  	},
+				  	success: function(res) {
+
+				  	},
+				  	error: function(a) {
+				  		console.log('提交失败', JSON.stringify(a));
+				  	} 
+				  })
+				}
+			})
+
+			// 取消
+			$('.cancle').on('click', function() {
+				console.log('取消');
+				// TODO
+			})
+
+		})
+	</script>
+</body>
+</html>

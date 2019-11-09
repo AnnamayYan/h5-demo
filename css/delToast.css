@@ -1,0 +1,46 @@
+.is-del{
+  display: none;
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  text-align: center;
+  z-index: 5;
+}
+.is-del .mask{
+  background: rgba(0,0,0,.5);
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+}
+.is-del .content{
+  width: 6rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: .2rem;
+}
+.is-del .top{
+  border-bottom: 1px solid #CECECF;
+  line-height: 1.87rem;
+  font-size: .36rem;
+  color:#000;
+}
+.is-del .item{
+  width: 50%;
+  line-height: .92rem;
+  box-sizing: border-box;
+  font-size: .34rem;
+  color:rgba(0,0,0,.8);
+}
+.is-del .item.confirm{
+	color:#E1151D;
+}
+.is-del .item.cancle{
+  border-right:1px solid #CECECF;
+}
