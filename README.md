@@ -1,6 +1,6 @@
 ## UI demo
 
-平时用的UI小demo
+平时用的UI小demo.
 
 * 删除弹窗
 [在线预览](https://annamayyan.github.io/test1/delToast.html)
